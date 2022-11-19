@@ -5,6 +5,8 @@ import { useIssueState } from "../../libs/hooks";
 import { GET_ISSUES, GET_ISSUES_PAGANITION } from "../../libs/apollo-graphql";
 import { IIssue } from "./Issue.types";
 import { IssueItem } from "../IssueItem/IssueItem";
+import { Loading } from "../Loading/Loading";
+import { Reload } from "../Reload/Reload";
 
 export const IssueListing = () => {
   const [currentCursor, setCurrentCursor] = useState("");
@@ -16,8 +18,8 @@ export const IssueListing = () => {
     before: currentCursor,
   });
 
-  if (loading) return <h1>Loading</h1>;
-  if (error) return <h1>Something wrong</h1>;
+  if (loading) return <Loading />;
+  if (error) return <Reload />;
   const issues = data?.repository.issues.edges as {
     cursor: string;
     node: IIssue;

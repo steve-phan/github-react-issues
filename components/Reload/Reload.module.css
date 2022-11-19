@@ -1,0 +1,23 @@
+.wrapper {
+  position: absolute;
+  inset: 0;
+  z-index: 2022;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--bgModalColor);
+}
+
+.wrapper button {
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 300;
+  padding: 8px 16px;
+
+  border: 1px solid var(--bgActivePageColor);
+  border-radius: 4px;
+  background-color: var(--bgActivePageColor);
+  color: #fff;
+}

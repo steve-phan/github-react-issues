@@ -1,0 +1,38 @@
+.wrapper {
+  position: absolute;
+  inset: 0;
+  z-index: 2022;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--bgModalColor);
+}
+
+.wrapper svg {
+  width: 36px;
+  height: 36px;
+  color: white;
+
+  -webkit-animation: spin-anim 1.2s linear infinite;
+
+  animation: spin-anim 1.2s linear infinite;
+}
+
+@-webkit-keyframes spin-anim {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes spin-anim {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
