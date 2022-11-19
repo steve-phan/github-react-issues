@@ -9,8 +9,10 @@ import { Loading } from "../Loading/Loading";
 import { Reload } from "../Reload/Reload";
 import styles from "./IssueListing.module.css";
 import { RadioButton } from "../RadioButton/RadioButton";
+import { Pagination } from "../Pagination/Pagination";
 
 export const IssueListing = () => {
+  const [currentPage, setCurrentPage] = useState(1);
   const [currentCursor, setCurrentCursor] = useState("");
   const { issueState, handleStatesChange } = useIssueState();
   const { data, loading, error } = useFetchingData({
@@ -26,6 +28,15 @@ export const IssueListing = () => {
     cursor: string;
     node: IIssue;
   }[];
+  const totalCount = data?.repository.issues.totalCount as number;
+
+  const handlePageChange = (num: number | string) => {
+    if (typeof num !== "string") {
+      setCurrentPage(num);
+      setCurrentCursor(issues[issues.length - 1].cursor);
+      window.scrollTo(0, 0);
+    }
+  };
   return (
     <div className={styles.wrapper}>
       <div className={styles.toolbar}>
@@ -52,6 +63,15 @@ export const IssueListing = () => {
             <IssueItem issueState={issueState} node={issue.node} />
           </a>
         ))}
+      </div>
+      <div>
+        <Pagination
+          onPageChange={handlePageChange}
+          totalCount={totalCount}
+          siblingCount={2}
+          pageSize={10}
+          currentPage={currentPage}
+        />
       </div>
     </div>
   );
