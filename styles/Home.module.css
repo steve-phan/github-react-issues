@@ -42,7 +42,8 @@
 .title {
   margin: 0;
   line-height: 1.15;
-  font-size: 4rem;
+  font-size: 2.5rem;
+  padding: 2rem;
 }
 
 .title,
@@ -124,6 +125,7 @@
     background: #111;
   }
   .logo img {
+    -webkit-filter: invert(1);
     filter: invert(1);
   }
 }

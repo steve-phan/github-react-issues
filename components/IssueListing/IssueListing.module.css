@@ -1,0 +1,11 @@
+.wrapper {
+  padding-bottom: 16px;
+  border: 1px solid var(--borderColor);
+  border-radius: 8px;
+}
+
+.toolbar {
+  position: relative;
+  display: flex;
+  padding: 16px;
+}

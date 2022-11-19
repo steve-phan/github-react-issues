@@ -7,8 +7,7 @@ export default function Home() {
   const { isMounted } = useMounted();
   return (
     <div className={styles.container}>
-      <h1>Github React Issues</h1>
-      <HelloWorld />
+      <h1 className={styles.title}>Github React Issues</h1>
       {isMounted && <IssueListing />}
     </div>
   );

@@ -1,12 +1,14 @@
 import React, { useState } from "react";
 
 import { useFetchingData } from "../../libs/hooks/useFetchingData";
-import { useIssueState } from "../../libs/hooks";
+import { STATE, useIssueState } from "../../libs/hooks";
 import { GET_ISSUES, GET_ISSUES_PAGANITION } from "../../libs/apollo-graphql";
 import { IIssue } from "./Issue.types";
 import { IssueItem } from "../IssueItem/IssueItem";
 import { Loading } from "../Loading/Loading";
 import { Reload } from "../Reload/Reload";
+import styles from "./IssueListing.module.css";
+import { RadioButton } from "../RadioButton/RadioButton";
 
 export const IssueListing = () => {
   const [currentCursor, setCurrentCursor] = useState("");
@@ -25,16 +27,32 @@ export const IssueListing = () => {
     node: IIssue;
   }[];
   return (
-    <div>
-      {issues.map((issue) => (
-        <a
-          key={issue.cursor}
-          target="__blank"
-          href={`https://github.com/reactjs/reactjs.org/issues/${issue.node.number}`}
-        >
-          <IssueItem issueState={issueState} node={issue.node} />
-        </a>
-      ))}
+    <div className={styles.wrapper}>
+      <div className={styles.toolbar}>
+        <div>
+          <RadioButton
+            label="Issues Open"
+            value={issueState === STATE.OPEN}
+            onChange={handleStatesChange}
+          />
+          <RadioButton
+            label="Issues Closed"
+            value={issueState === STATE.CLOSED}
+            onChange={handleStatesChange}
+          />
+        </div>
+      </div>
+      <div>
+        {issues.map((issue) => (
+          <a
+            key={issue.cursor}
+            target="__blank"
+            href={`https://github.com/reactjs/reactjs.org/issues/${issue.node.number}`}
+          >
+            <IssueItem issueState={issueState} node={issue.node} />
+          </a>
+        ))}
+      </div>
     </div>
   );
 };

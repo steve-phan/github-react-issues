@@ -3,6 +3,7 @@
   display: flex;
   padding: 16px;
   border-top: 1px solid var(--borderColor);
+  overflow: hidden;
 }
 
 /* ISSUE STATE */
@@ -24,10 +25,12 @@
 .descWrapper {
   padding-left: 8px;
   padding-right: 24px;
+  width: 100%;
 }
 .descTitle {
   font-size: 16px;
   font-weight: bold;
+  overflow: hidden;
 }
 
 .descInfo {
