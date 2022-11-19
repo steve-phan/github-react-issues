@@ -12,6 +12,12 @@ a {
 }
 
 * {
+  --borderColor: #e1e1e1;
+  --issueOpenColor: #1a7f37;
+  --issueClosedColor: #8250df;
+  --bgActivePageColor: #0969da;
+  --bgModalColor: #c8c8c9a7;
+  --disableColor: #8c959f;
   box-sizing: border-box;
 }
 

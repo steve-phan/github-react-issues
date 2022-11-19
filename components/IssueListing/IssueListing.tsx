@@ -4,6 +4,7 @@ import { useFetchingData } from "../../libs/hooks/useFetchingData";
 import { useIssueState } from "../../libs/hooks";
 import { GET_ISSUES, GET_ISSUES_PAGANITION } from "../../libs/apollo-graphql";
 import { IIssue } from "./Issue.types";
+import { IssueItem } from "../IssueItem/IssueItem";
 
 export const IssueListing = () => {
   const [currentCursor, setCurrentCursor] = useState("");
@@ -24,7 +25,11 @@ export const IssueListing = () => {
   return (
     <div>
       {issues.map((issue) => (
-        <h1 key={issue.cursor}>{issue.cursor} </h1>
+        <IssueItem
+          key={issue.cursor}
+          issueState={issueState}
+          node={issue.node}
+        />
       ))}
     </div>
   );

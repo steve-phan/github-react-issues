@@ -2,7 +2,7 @@ interface IAuthor {
   login: string;
 }
 interface IComments {
-  totalCount: string;
+  totalCount: number;
 }
 
 export interface IIssue {
