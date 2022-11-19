@@ -27,9 +27,11 @@ export const IssueOpenItem = ({
           </span>
         </div>
       </div>
-      <div className={styles.comment}>
-        <CommentIcon /> {comments?.totalCount}
-      </div>
+      {!!comments?.totalCount && (
+        <div className={styles.comment}>
+          <CommentIcon /> {comments?.totalCount}
+        </div>
+      )}
     </div>
   );
 };

@@ -9,7 +9,7 @@ export const useFetchingData = ({
   issueState: string;
   query: DocumentNode;
 }) => {
-  const { data, loading, error } = useQuery(query, {
+  const { data, loading, error, previousData } = useQuery(query, {
     variables: {
       last: 10,
       states: issueState,
@@ -20,5 +20,6 @@ export const useFetchingData = ({
     data,
     loading,
     error,
+    previousData,
   };
 };

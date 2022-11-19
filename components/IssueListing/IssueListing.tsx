@@ -15,20 +15,23 @@ export const IssueListing = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [currentCursor, setCurrentCursor] = useState("");
   const { issueState, handleStatesChange } = useIssueState();
-  const { data, loading, error } = useFetchingData({
+  const { data, loading, error, previousData } = useFetchingData({
     issueState,
     //TODO: dynamic query based on variable?
     query: currentCursor ? GET_ISSUES_PAGANITION : GET_ISSUES,
     before: currentCursor,
   });
 
-  if (loading) return <Loading />;
+  if (loading && !previousData) return <Loading />;
   if (error) return <Reload />;
-  const issues = data?.repository.issues.edges as {
+  const issues = (data?.repository.issues.edges ||
+    previousData?.repository.issues.edges) as {
     cursor: string;
     node: IIssue;
   }[];
-  const totalCount = data?.repository.issues.totalCount as number;
+
+  const totalCount = (data?.repository.issues.totalCount ||
+    previousData?.repository.issues.totalCount) as number;
 
   const handlePageChange = (num: number | string) => {
     if (typeof num !== "string") {
@@ -52,6 +55,7 @@ export const IssueListing = () => {
             onChange={handleStatesChange}
           />
         </div>
+        <div>Current page: {currentPage}</div>
       </div>
       <div>
         {issues.map((issue) => (

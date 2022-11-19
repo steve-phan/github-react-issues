@@ -23,9 +23,11 @@ export const IssueClosedItem = ({
           <span>{`#${number} by ${author?.login} was closed`}</span>
         </div>
       </div>
-      <div className={styles.comment}>
-        <CommentIcon /> {comments?.totalCount}
-      </div>
+      {!!comments?.totalCount && (
+        <div className={styles.comment}>
+          <CommentIcon /> {comments?.totalCount}
+        </div>
+      )}
     </div>
   );
 };

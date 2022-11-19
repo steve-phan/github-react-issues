@@ -7,5 +7,6 @@
 .toolbar {
   position: relative;
   display: flex;
+  justify-content: space-evenly;
   padding: 16px;
 }
