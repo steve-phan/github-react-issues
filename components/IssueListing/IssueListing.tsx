@@ -27,11 +27,13 @@ export const IssueListing = () => {
   return (
     <div>
       {issues.map((issue) => (
-        <IssueItem
+        <a
           key={issue.cursor}
-          issueState={issueState}
-          node={issue.node}
-        />
+          target="__blank"
+          href={`https://github.com/reactjs/reactjs.org/issues/${issue.node.number}`}
+        >
+          <IssueItem issueState={issueState} node={issue.node} />
+        </a>
       ))}
     </div>
   );
