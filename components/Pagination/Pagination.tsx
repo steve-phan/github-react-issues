@@ -20,6 +20,7 @@ export const Pagination = (props: IPaginationProps) => {
     siblingCount = 1,
     currentPage,
     pageSize,
+    matches,
   } = props;
 
   const paginationRange = usePagination({
@@ -27,11 +28,8 @@ export const Pagination = (props: IPaginationProps) => {
     totalCount,
     siblingCount,
     pageSize,
+    matches,
   });
-
-  if (currentPage === 0 || paginationRange.length < 2) {
-    return null;
-  }
 
   const onNext = () => {
     onPageChange(currentPage + 1);
@@ -46,7 +44,7 @@ export const Pagination = (props: IPaginationProps) => {
   const disablePrevious = currentPage === 1;
 
   return (
-    <ul className={styles.wrapper}>
+    <ul className={`${styles.wrapper} ${matches ? styles.mobileWrapper : ""}`}>
       <li
         className={`${styles.arrow} ${disablePrevious ? styles.disable : ""}`}
         onClick={() => !disablePrevious && onPrevious()}

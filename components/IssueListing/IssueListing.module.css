@@ -10,3 +10,9 @@
   justify-content: space-evenly;
   padding: 16px;
 }
+
+.toolbarMobile {
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}

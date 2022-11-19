@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
 import { useFetchingData } from "../../libs/hooks/useFetchingData";
-import { STATE, useIssueState } from "../../libs/hooks";
+import { STATE, useIssueState, useMediaQuery } from "../../libs/hooks";
 import { GET_ISSUES, GET_ISSUES_PAGANITION } from "../../libs/apollo-graphql";
 import { IIssue } from "./Issue.types";
 import { IssueItem } from "../IssueItem/IssueItem";
@@ -15,6 +15,7 @@ export const IssueListing = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [currentCursor, setCurrentCursor] = useState("");
   const { issueState, handleStatesChange } = useIssueState();
+  const { matches } = useMediaQuery("(max-width: 460px)");
   const { data, loading, error, previousData } = useFetchingData({
     issueState,
     //TODO: dynamic query based on variable?
@@ -23,7 +24,9 @@ export const IssueListing = () => {
   });
 
   if (loading && !previousData) return <Loading />;
+
   if (error) return <Reload />;
+
   const issues = (data?.repository.issues.edges ||
     previousData?.repository.issues.edges) as {
     cursor: string;
@@ -42,7 +45,9 @@ export const IssueListing = () => {
   };
   return (
     <div className={styles.wrapper}>
-      <div className={styles.toolbar}>
+      <div
+        className={`${styles.toolbar} ${matches ? styles.toolbarMobile : ""}`}
+      >
         <div>
           <RadioButton
             label="Issues Open"
@@ -75,6 +80,7 @@ export const IssueListing = () => {
           siblingCount={2}
           pageSize={10}
           currentPage={currentPage}
+          matches={matches}
         />
       </div>
     </div>

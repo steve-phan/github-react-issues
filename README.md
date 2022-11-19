@@ -17,3 +17,5 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 ### Serve App: `yarn dev`
 
 ### Run unit test: `yarn test`
+
+### [Live version](https://github-react-issues.netlify.app)

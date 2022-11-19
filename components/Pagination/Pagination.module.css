@@ -2,8 +2,14 @@
   display: flex;
   justify-content: center;
   list-style-type: none;
+  padding-left: 0;
+  width: 100%;
+  max-width: 100vw;
+  overflow: hidden;
 }
-
+.mobileWrapper {
+  justify-content: space-between;
+}
 .wrapper li {
   -webkit-user-select: none;
   -moz-user-select: none;

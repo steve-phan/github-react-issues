@@ -5,6 +5,7 @@ export interface IPagination {
   pageSize: number;
   siblingCount: number;
   currentPage: number;
+  matches?: boolean;
 }
 
 const range = (start: number, end: number) => {
@@ -22,13 +23,16 @@ export const usePagination = ({
   pageSize = 10,
   siblingCount = 1,
   currentPage,
+  matches,
 }: IPagination) => {
   const paginationRange = useMemo(() => {
     const totalPageCount = Math.ceil(totalCount / pageSize);
 
     // Pages count is determined as siblingCount + firstPage + lastPage + currentPage + 2*DOTS
     const totalPageNumbers = siblingCount + 5;
-
+    if (matches) {
+      return [];
+    }
     /*
       Case 1:
       If the number of pages is less than the page numbers we want to show in our
@@ -85,7 +89,7 @@ export const usePagination = ({
       let middleRange = range(leftSiblingIndex, rightSiblingIndex);
       return [firstPageIndex, DOTS, ...middleRange, DOTS, lastPageIndex];
     }
-  }, [totalCount, pageSize, siblingCount, currentPage]);
+  }, [totalCount, pageSize, siblingCount, currentPage, matches]);
 
   return paginationRange || [];
 };

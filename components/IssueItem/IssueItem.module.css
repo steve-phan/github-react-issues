@@ -24,13 +24,14 @@
 
 .descWrapper {
   padding-left: 8px;
-  padding-right: 24px;
+  padding-right: 28px;
   width: 100%;
 }
 .descTitle {
   font-size: 16px;
   font-weight: bold;
   overflow: hidden;
+  line-break: anywhere;
 }
 
 .descInfo {
