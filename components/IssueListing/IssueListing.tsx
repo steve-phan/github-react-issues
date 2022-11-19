@@ -12,9 +12,9 @@ import { RadioButton } from "../RadioButton/RadioButton";
 import { Pagination } from "../Pagination/Pagination";
 
 export const IssueListing = () => {
-  const [currentPage, setCurrentPage] = useState(1);
   const [currentCursor, setCurrentCursor] = useState("");
-  const { issueState, handleStatesChange } = useIssueState();
+  const { issueState, currentPage, setCurrentPage, handleStatesChange } =
+    useIssueState();
   const { matches } = useMediaQuery("(max-width: 460px)");
   const { data, loading, error, previousData } = useFetchingData({
     issueState,
@@ -43,6 +43,7 @@ export const IssueListing = () => {
       window.scrollTo(0, 0);
     }
   };
+
   return (
     <div className={styles.wrapper}>
       <div

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export const STATE = {
   OPEN: "OPEN",
@@ -8,6 +8,7 @@ export const STATE = {
 export type TStates = keyof typeof STATE;
 
 export const useIssueState = () => {
+  const [currentPage, setCurrentPage] = useState(1);
   const [states, setState] = useState<TStates>(STATE.OPEN);
 
   const handleStatesChange = () => {
@@ -16,9 +17,13 @@ export const useIssueState = () => {
     } else {
       setState(STATE.OPEN);
     }
+    setCurrentPage(1);
   };
+
   return {
+    currentPage,
     issueState: states,
     handleStatesChange,
+    setCurrentPage,
   };
 };
