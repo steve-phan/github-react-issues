@@ -1,12 +1,17 @@
-import { ApolloClient, gql, InMemoryCache } from "@apollo/client";
+import { ApolloClient, gql, HttpLink, InMemoryCache } from "@apollo/client";
+import fetch from "cross-fetch";
 
 const accessToken = process.env.NEXT_PUBLIC_GITHUB_ACCESS_TOKEN;
 
 export const client = new ApolloClient({
-  uri: "https://api.github.com/graphql",
-  headers: {
-    authorization: `bearer ${accessToken}`,
-  },
+  link: new HttpLink({
+    uri: "https://api.github.com/graphql",
+    fetch,
+    headers: {
+      authorization: `bearer ${accessToken}`,
+    },
+  }),
+
   cache: new InMemoryCache(),
 });
 
