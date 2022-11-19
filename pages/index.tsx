@@ -1,4 +1,3 @@
-import { HelloWorld } from "../components/HelloWorld/HelloWorld";
 import { IssueListing } from "../components/IssueListing/IssueListing";
 import { useMounted } from "../libs/hooks";
 import styles from "../styles/Home.module.css";
