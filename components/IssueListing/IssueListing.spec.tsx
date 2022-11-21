@@ -1,24 +1,7 @@
-import { render } from "@testing-library/react";
-import { MockedProvider } from "@apollo/react-testing";
-
 import { IssueListing } from "./IssueListing";
-import { mockIssuesData, mockIssuesQuery } from "../../__MOCK__";
+import { render } from "../../testProvider";
 
-const mocks = [
-  {
-    request: mockIssuesQuery,
-    result: {
-      data: mockIssuesData,
-    },
-  },
-];
-
-const subject = () =>
-  render(
-    <MockedProvider mocks={mocks} addTypename={false}>
-      <IssueListing />
-    </MockedProvider>
-  );
+const subject = () => render(<IssueListing />, { withApollo: true });
 
 describe("IssueListing", () => {
   it("should render correctly", () => {
